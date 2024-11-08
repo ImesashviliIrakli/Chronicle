@@ -1,4 +1,5 @@
 ﻿using Chronicle.Application.Interfaces;
+using Chronicle.Application.Models.Identity;
 using Chronicle.Application.Options;
 using Chronicle.Domain.Entities;
 using Chronicle.Domain.Enums;
@@ -13,21 +14,16 @@ using System.Text;
 
 namespace Chronicle.Application.Identity.Commands.Login;
 
-public class LoginCommandHandler : ICommandQueryHandler<LoginCommand>
-{
-    private readonly UserManager<ApplicationUser> _userManager;
-    private readonly SignInManager<ApplicationUser> _signInManager;
-    private readonly JwtOptions _jwtOptions;
-    public LoginCommandHandler(
+public class LoginCommandHandler(
         UserManager<ApplicationUser> userManager,
         SignInManager<ApplicationUser> signInManager,
         IOptions<JwtOptions> jwtOptions
-        )
-    {
-        _userManager = userManager;
-        _signInManager = signInManager;
-        _jwtOptions = jwtOptions.Value;
-    }
+    ) : ICommandQueryHandler<LoginCommand>
+{
+    private readonly UserManager<ApplicationUser> _userManager = userManager;
+    private readonly SignInManager<ApplicationUser> _signInManager = signInManager;
+    private readonly JwtOptions _jwtOptions = jwtOptions.Value;
+
     public async Task<Result> Handle(LoginCommand request, CancellationToken cancellationToken)
     {
         var user = await _userManager.FindByEmailAsync(request.email);
@@ -43,9 +39,8 @@ public class LoginCommandHandler : ICommandQueryHandler<LoginCommand>
         JwtSecurityToken jwt = await GenerateTokenAsync(user);
 
         var token = new JwtSecurityTokenHandler().WriteToken(jwt);
-        var resp = new LoginResponse(token, user.Id);
 
-        return Result.Success(resp);
+        return Result.Success(new LoginResponse(token, user.Id));
     }
 
     private async Task<JwtSecurityToken> GenerateTokenAsync(ApplicationUser user)
@@ -67,15 +62,3 @@ public class LoginCommandHandler : ICommandQueryHandler<LoginCommand>
     }
 }
 
-public class LoginResponse
-{
-    [Required]
-    public string Token { get; set; }
-    public string UserId { get; set; }
-
-    public LoginResponse(string token, string userId)
-    {
-        Token = token;
-        UserId = userId;
-    }
-}
