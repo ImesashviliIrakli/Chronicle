@@ -2,4 +2,4 @@
 
 namespace Chronicle.Application.Identity.Commands.Login;
 
-public record LoginCommand(string email, string password) : ICommandQuery;
+public record LoginCommand(string Email, string Password) : ICommandQuery;

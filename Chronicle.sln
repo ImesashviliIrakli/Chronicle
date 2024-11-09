@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chronicle.Application", "Sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chronicle.PostgrePersistence", "Src\Chronicle.PostgrePersistence\Chronicle.PostgrePersistence.csproj", "{4B4DC6CD-1B29-4276-A518-FBEAEBDF205F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chronicle.Api", "Src\Chronicle.Api\Chronicle.Api.csproj", "{1AA14C26-5B83-4EBC-ABD7-2C01974C7CB4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{4B4DC6CD-1B29-4276-A518-FBEAEBDF205F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B4DC6CD-1B29-4276-A518-FBEAEBDF205F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B4DC6CD-1B29-4276-A518-FBEAEBDF205F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AA14C26-5B83-4EBC-ABD7-2C01974C7CB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AA14C26-5B83-4EBC-ABD7-2C01974C7CB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AA14C26-5B83-4EBC-ABD7-2C01974C7CB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AA14C26-5B83-4EBC-ABD7-2C01974C7CB4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -37,6 +43,7 @@ Global
 		{7D9080F8-2661-4250-967F-F1D35B57970C} = {0751DDDA-4F0D-47B2-BFE7-AD77D47AA7B4}
 		{356C0E7F-76B7-49A6-9168-4E9145145562} = {0751DDDA-4F0D-47B2-BFE7-AD77D47AA7B4}
 		{4B4DC6CD-1B29-4276-A518-FBEAEBDF205F} = {0751DDDA-4F0D-47B2-BFE7-AD77D47AA7B4}
+		{1AA14C26-5B83-4EBC-ABD7-2C01974C7CB4} = {0751DDDA-4F0D-47B2-BFE7-AD77D47AA7B4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {97D4F8CF-1A31-4D04-90F0-9837A5EFAA51}

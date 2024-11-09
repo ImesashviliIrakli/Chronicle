@@ -29,7 +29,7 @@ public class RegisterCommandHandler(
             var user = new ApplicationUser
             {
                 Email = request.Email,
-                UserName = request.Email,
+                UserName = request.UserName,
                 EmailConfirmed = true,
                 FirstName = request.FirstName,
                 LastName = request.LastName,

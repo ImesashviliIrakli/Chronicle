@@ -26,12 +26,12 @@ public class LoginCommandHandler(
 
     public async Task<Result> Handle(LoginCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userManager.FindByEmailAsync(request.email);
+        var user = await _userManager.FindByEmailAsync(request.Email);
 
         if (user is null)
             return Result.Failure(GlobalStatusCodes.NotFound, IdentityErrors.NotFound);
 
-        var result = await _signInManager.CheckPasswordSignInAsync(user, request.password, false);
+        var result = await _signInManager.CheckPasswordSignInAsync(user, request.Password, false);
 
         if (result.Succeeded == false)
             return Result.Failure(GlobalStatusCodes.BadRequest, IdentityErrors.LoginFailed);
