@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Chronicle.Application\Chronicle.Application.csproj" />
+    <ProjectReference Include="..\Chronicle.Infrastucture\Chronicle.Infrastucture.csproj" />
     <ProjectReference Include="..\Chronicle.PostgrePersistence\Chronicle.PostgrePersistence.csproj" />
   </ItemGroup>
 

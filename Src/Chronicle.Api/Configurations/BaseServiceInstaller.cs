@@ -62,6 +62,16 @@ public class BaseServiceInstaller : IServiceInstaller
         });
 
 
+        services.AddCors(options =>
+        {
+            options.AddPolicy("AllowAll", policy =>
+            {
+                policy.AllowAnyOrigin()
+                      .AllowAnyHeader()
+                      .AllowAnyMethod();
+            });
+        });
+
         services.AddTransient<ExceptionMiddleware>();
 
     }

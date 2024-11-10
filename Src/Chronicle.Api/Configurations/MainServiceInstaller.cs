@@ -1,6 +1,6 @@
 ﻿using Chronicle.Application;
 using Chronicle.PostgrePersistence;
-
+using Chronicle.Infrastucture;
 namespace Chronicle.Api.Configurations;
 
 public class MainServiceInstaller : IServiceInstaller
@@ -9,5 +9,6 @@ public class MainServiceInstaller : IServiceInstaller
     {
         services.AddApplicationServices(configuration);
         services.AddPostgrePersistenceServices(configuration);
+        services.AddInfrastructureServices(configuration);
     }
 }
