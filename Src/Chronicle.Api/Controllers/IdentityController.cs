@@ -30,7 +30,7 @@ public class IdentityController(IMediator mediator) : BaseController
         return CreateResponse(data);
     }
 
-    [HttpGet("login-google")]
+    [HttpGet]
     public IActionResult GetGoogleLoginUrl()
     {
         var redirectUrl = Url.Action("GoogleCallback", "Identity");
@@ -43,10 +43,15 @@ public class IdentityController(IMediator mediator) : BaseController
         return Ok(new { Url = googleUrl });
     }
 
+    [HttpGet]
+    public IActionResult ExternalLogin(string provider, string returnUrl)
+    {
+        var properties = new AuthenticationProperties { RedirectUri = returnUrl };
+        return Challenge(properties, provider);
+    }
 
-    // Callback endpoint for handling the Google OAuth response.
-    [HttpGet("google-callback")]
-    public async Task<IActionResult> GoogleCallback()
+    [HttpGet]
+    public async Task<IActionResult> GoogleLogin()
     {
         // Authenticate the user using the scheme set up with Google.
         var authenticateResult = await HttpContext.AuthenticateAsync(GoogleDefaults.AuthenticationScheme);
@@ -71,10 +76,5 @@ public class IdentityController(IMediator mediator) : BaseController
         });
     }
 
-    [HttpGet("external-login")]
-    public IActionResult ExternalLogin(string provider, string returnUrl)
-    {
-        var properties = new AuthenticationProperties { RedirectUri = returnUrl };
-        return Challenge(properties, provider); // Redirects to the external authentication provider (Google)
-    }
+    
 }
