@@ -1,4 +1,3 @@
-import "./auth.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -8,8 +7,12 @@ import {
     InputLabel,
     InputAdornment,
     FormControl,
-    TextField,
+    Typography,
     Button,
+    TextField,
+    Card,
+    CardContent,
+    Grid,
 } from "@mui/material";
 import { VisibilityOff, Visibility } from "@mui/icons-material";
 import LoginIcon from "@mui/icons-material/Login";
@@ -17,6 +20,8 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useAuth } from "../../hooks/useAuth";
 
 function Registration() {
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
@@ -24,7 +29,7 @@ function Registration() {
 
     const { mutate } = useAuth(
         ["registration"],
-        "/api/auth/register",
+        "/api/Identity/Register",
         "register"
     );
 
@@ -36,77 +41,126 @@ function Registration() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        mutate({ email, userName, password, roleName: "Student" });
+        mutate({ firstName, lastName, email, userName, password });
     };
 
     return (
-        <>
-            <div className="registration">
-                <Box component="form" className="p-3" onSubmit={handleSubmit}>
-                    <TextField
-                        required
-                        label="Email"
-                        value={email}
-                        onChange={(e) => {
-                            setEmail(e.target.value);
-                        }}
-                    />
-
-                    <TextField
-                        required
-                        label="User Name"
-                        value={userName}
-                        onChange={(e) => {
-                            setUserName(e.target.value);
-                        }}
-                    />
-
-                    <FormControl
-                        required
-                        variant="outlined"
-                        value={password}
-                        onChange={(e) => {
-                            setPassword(e.target.value);
-                        }}
+        <Grid
+            container
+            justifyContent="center"
+            alignItems="center"
+        >
+            <Card elevation={3} sx={{ width: 400, padding: 3, backgroundColor: "#f3eceb" }}>
+                <CardContent>
+                    <Typography
+                        variant="h5"
+                        component="h1"
+                        textAlign="center"
+                        fontWeight="bold"
+                        gutterBottom
                     >
-                        <InputLabel htmlFor="password">Password</InputLabel>
-                        <OutlinedInput
-                            name="password"
-                            type={showPassword ? "text" : "password"}
-                            endAdornment={
-                                <InputAdornment position="end">
-                                    <IconButton
-                                        aria-label="toggle password visibility"
-                                        onClick={handleShowPassword}
-                                        onMouseDown={handleMouseDownPassword}
-                                        edge="end"
-                                    >
-                                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                                    </IconButton>
-                                </InputAdornment>
-                            }
-                            label="Password"
+                        Create an Account
+                    </Typography>
+                    <Typography
+                        variant="body2"
+                        color="textSecondary"
+                        textAlign="center"
+                        fontWeight="bold"
+                        gutterBottom
+                    >
+                        Register to get started
+                    </Typography>
+                    <Box component="form" mt={2} onSubmit={handleSubmit}>
+                        <TextField
+                            required
+                            fullWidth
+                            label="First Name"
+                            value={firstName}
+                            onChange={(e) => setFirstName(e.target.value)}
+                            variant="outlined"
+                            sx={{ mb: 2 }}
+                            color="black"
                         />
-                    </FormControl>
-
-                    <Box mt={2}>
+                        <TextField
+                            required
+                            fullWidth
+                            label="Last Name"
+                            value={lastName}
+                            onChange={(e) => setLastName(e.target.value)}
+                            variant="outlined"
+                            sx={{ mb: 2 }}
+                            color="black"
+                        />
+                        <TextField
+                            required
+                            fullWidth
+                            label="Email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            variant="outlined"
+                            sx={{ mb: 2 }}
+                            color="black"
+                        />
+                        <TextField
+                            required
+                            fullWidth
+                            label="User Name"
+                            value={userName}
+                            onChange={(e) => setUserName(e.target.value)}
+                            variant="outlined"
+                            sx={{ mb: 2 }}
+                            color="black"
+                        />
+                        <FormControl
+                            fullWidth
+                            variant="outlined"
+                            sx={{ mb: 3 }}
+                            color="black"
+                        >
+                            <InputLabel htmlFor="password">Password</InputLabel>
+                            <OutlinedInput
+                                id="password"
+                                type={showPassword ? "text" : "password"}
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                endAdornment={
+                                    <InputAdornment position="end">
+                                        <IconButton
+                                            aria-label="toggle password visibility"
+                                            onClick={handleShowPassword}
+                                            onMouseDown={handleMouseDownPassword}
+                                            edge="end"
+                                        >
+                                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                }
+                                label="Password"
+                            />
+                        </FormControl>
                         <Button
-                            variant="contained"
-                            endIcon={<AccountCircleIcon />}
                             type="submit"
+                            variant="outlined"
+                            color="black"
+                            fullWidth
+                            sx={{ mb: 2, textTransform: "none", fontWeight: "bold" }}
+                            
                         >
                             Register
                         </Button>
-                        <span>or</span>
-                        <Link to="/auth">
-                            <Button variant="outlined" endIcon={<LoginIcon />}>
+                        <Typography variant="body2" textAlign="center">
+                            Already have an account?{" "}
+                            <Link
+                                to="/auth"
+                                style={{ textDecoration: "none", color: "#1976d2" }}
+                            >
                                 Login
-                            </Button>
-                        </Link>
+                            </Link>
+                        </Typography>
                     </Box>
-                </Box>
-            </div>
-        </>
+                </CardContent>
+            </Card>
+        </Grid>
     );
 }
 

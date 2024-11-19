@@ -1,19 +1,10 @@
 import "./root-layout.css";
+import React, { useState } from "react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
-import { useState } from "react";
 import { AccountCircle } from "@mui/icons-material";
-import { Fab } from "@mui/material";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
+import LogoIcon from "../../assets/icons/logoIcon";
+import { Fab, AppBar, Box, Toolbar, IconButton, Typography, Menu, Button, MenuItem, Container } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-import Button from "@mui/material/Button";
-import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Fade from "@mui/material/Fade";
@@ -25,7 +16,6 @@ function RootLayout(props) {
     const [anchorElUser, setAnchorElUser] = useState(null);
 
     const auth = sessionStorage.getItem("login");
-
     const navigate = useNavigate();
 
     const handleOpenNavMenu = (event) => {
@@ -41,16 +31,9 @@ function RootLayout(props) {
 
     const handleCloseUserMenu = (e) => {
         setAnchorElUser(null);
-        switch (e.target.innerText) {
-            case "Logout":
-                sessionStorage.removeItem("userData");
-                sessionStorage.removeItem("token");
-                sessionStorage.removeItem("login");
-                navigate("/");
-                break;
-
-            default:
-                break;
+        if (e.target.innerText === "Logout") {
+            sessionStorage.clear();
+            navigate("/");
         }
     };
 
@@ -63,14 +46,9 @@ function RootLayout(props) {
         });
 
         const handleClick = (event) => {
-            const anchor = (event.target.ownerDocument || document).querySelector(
-                "#top"
-            );
-
+            const anchor = (event.target.ownerDocument || document).querySelector("#top");
             if (anchor) {
-                anchor.scrollIntoView({
-                    block: "center",
-                });
+                anchor.scrollIntoView({ block: "center" });
             }
         };
 
@@ -89,32 +67,31 @@ function RootLayout(props) {
 
     return (
         <div className="root-layout" id="top">
-            <AppBar>
+            <AppBar sx={{ bgcolor: "#f3eceb", color: "black" }}>
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
-                        <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+                        <LogoIcon />
                         <Typography
                             variant="h6"
-                            noWrap
                             component="a"
-                            onClick={() => navigate("/courses")}
+                            onClick={() => navigate("/tasks")}
                             sx={{
                                 mr: 2,
                                 display: { xs: "none", md: "flex" },
                                 fontFamily: "monospace",
                                 fontWeight: 700,
-                                letterSpacing: ".3rem",
+                                letterSpacing: ".1rem",
                                 color: "inherit",
                                 textDecoration: "none",
+                                cursor: "pointer",
                             }}
                         >
-                            LOGO
+                            Chronicle
                         </Typography>
-
                         <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
                             <IconButton
                                 size="large"
-                                aria-label="account of current user"
+                                aria-label="menu"
                                 aria-controls="menu-appbar"
                                 aria-haspopup="true"
                                 onClick={handleOpenNavMenu}
@@ -136,71 +113,41 @@ function RootLayout(props) {
                                 }}
                                 open={Boolean(anchorElNav)}
                                 onClose={handleCloseNavMenu}
-                                sx={{
-                                    display: { xs: "block", md: "none" },
-                                }}
+                                sx={{ display: { xs: "block", md: "none" } }}
                             >
                                 <MenuItem onClick={handleCloseNavMenu}>
-                                    <NavLink to={"/courses"}>Courses</NavLink>
-                                </MenuItem>
-                                <MenuItem onClick={handleCloseNavMenu}>
-                                    <NavLink to={"/about-us"}>About Us</NavLink>
-                                </MenuItem>
-                                <MenuItem onClick={handleCloseNavMenu}>
-                                    <NavLink to={"/contact-us"}>Contact Us</NavLink>
+                                    <NavLink
+                                        to="/tasks"
+                                        style={{
+                                            textDecoration: "none",
+                                            fontWeight: 500,
+                                            fontSize: "1.2rem"
+                                        }}
+                                    >
+                                        Tasks
+                                    </NavLink>
                                 </MenuItem>
                             </Menu>
                         </Box>
-                        <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-                        <Typography
-                            variant="h5"
-                            noWrap
-                            component="a"
-                            onClick={() => navigate("/courses")}
-                            sx={{
-                                mr: 2,
-                                display: { xs: "flex", md: "none" },
-                                flexGrow: 1,
-                                fontFamily: "monospace",
-                                fontWeight: 700,
-                                letterSpacing: ".3rem",
-                                color: "inherit",
-                                textDecoration: "none",
-                            }}
-                        >
-                            LOGO
-                        </Typography>
                         <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-                            <NavLink to={"/courses"}>
-                                <Button
-                                    onClick={handleCloseNavMenu}
-                                    sx={{ my: 2, color: "white", display: "block" }}
-                                >
-                                    Courses
-                                </Button>
-                            </NavLink>
-                            <NavLink to={"/about-us"}>
-                                <Button
-                                    onClick={handleCloseNavMenu}
-                                    sx={{ my: 2, color: "white", display: "block" }}
-                                >
-                                    About Us
-                                </Button>
-                            </NavLink>
-                            <NavLink to={"/contact-us"}>
-                                <Button
-                                    onClick={handleCloseNavMenu}
-                                    sx={{ my: 2, color: "white", display: "block" }}
-                                >
-                                    Contact Us
-                                </Button>
+                            <NavLink
+                                to="/tasks"
+                                style={{
+                                    textDecoration: "none",
+                                    color: "black",
+                                    marginRight: "16px",
+                                    fontWeight: 600,
+                                    fontSize: "1.2rem",
+                                }}
+                            >
+                                Tasks
                             </NavLink>
                         </Box>
                         {auth === "true" ? (
-                            <div>
+                            <Box>
                                 <IconButton
                                     size="large"
-                                    aria-label="account of current user"
+                                    aria-label="user menu"
                                     aria-controls="menu-appbar"
                                     aria-haspopup="true"
                                     onClick={handleOpenUserMenu}
@@ -227,14 +174,19 @@ function RootLayout(props) {
                                         <MenuItem
                                             key={setting}
                                             onClick={(e) => handleCloseUserMenu(e)}
+                                            sx={{ fontWeight: 500 }}
                                         >
                                             {setting}
                                         </MenuItem>
                                     ))}
                                 </Menu>
-                            </div>
+                            </Box>
                         ) : (
-                            <Button color="inherit" onClick={() => navigate("/auth")}>
+                            <Button
+                                color="inherit"
+                                onClick={() => navigate("/auth")}
+                                sx={{ fontWeight: 600, fontSize: "1rem" }}
+                            >
                                 Login
                             </Button>
                         )}

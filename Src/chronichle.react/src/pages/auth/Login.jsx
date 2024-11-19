@@ -8,12 +8,14 @@ import {
     InputLabel,
     InputAdornment,
     FormControl,
-    TextField,
+    Typography,
     Button,
+    TextField,
+    Card,
+    CardContent,
+    Grid,
 } from "@mui/material";
 import { VisibilityOff, Visibility } from "@mui/icons-material";
-import LoginIcon from "@mui/icons-material/Login";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useAuth } from "../../hooks/useAuth";
 
 function Login() {
@@ -35,60 +37,86 @@ function Login() {
     };
 
     return (
-        <>
-            <div className="login">
-                <Box component="form" className="p-3" onSubmit={handleSubmit}>
-                    <TextField
-                        required
-                        label="Email"
-                        value={email}
-                        onChange={(e) => {
-                            setEmail(e.target.value);
-                        }}
-                    />
-
-                    <FormControl
-                        required
-                        variant="outlined"
-                        value={password}
-                        onChange={(e) => {
-                            setPassword(e.target.value);
-                        }}
+        <Grid
+            container
+            justifyContent="center"
+            alignItems="center"
+        >
+                <Card elevation={3} sx={{ width: 400, padding: 3, backgroundColor: "#f3eceb" }}>
+                <CardContent>
+                    <Typography
+                        variant="h5"
+                        component="h1"
+                        textAlign="center"
+                        fontWeight="bold"
+                        gutterBottom
                     >
-                        <InputLabel htmlFor="password">Password</InputLabel>
-                        <OutlinedInput
-                            name="password"
-                            type={showPassword ? "text" : "password"}
-                            endAdornment={
-                                <InputAdornment position="end">
-                                    <IconButton
-                                        aria-label="toggle password visibility"
-                                        onClick={handleShowPassword}
-                                        onMouseDown={handleMouseDownPassword}
-                                        edge="end"
-                                    >
-                                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                                    </IconButton>
-                                </InputAdornment>
-                            }
-                            label="Password"
-                        />
-                    </FormControl>
-
-                    <Box mt={2}>
-                        <Button variant="contained" endIcon={<LoginIcon />} type="submit">
+                        Welcome Back
+                    </Typography>
+                    <Typography
+                        variant="body2"
+                        color="textSecondary"
+                        textAlign="center"
+                        fontWeight="bold"
+                        gutterBottom
+                    >
+                        Login to your account
+                    </Typography>
+                    <Box component="form" mt={2} onSubmit={handleSubmit}>
+                        <FormControl fullWidth sx={{ mb: 2 }}>
+                            <TextField
+                                required
+                                label="Email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                variant="outlined"
+                                color="black"
+                            />
+                        </FormControl>
+                        <FormControl fullWidth variant="outlined" sx={{ mb: 3 }} color="black">
+                            <InputLabel htmlFor="password">Password</InputLabel>
+                            <OutlinedInput
+                                id="password"
+                                type={showPassword ? "text" : "password"}
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                endAdornment={
+                                    <InputAdornment position="end">
+                                        <IconButton
+                                            aria-label="toggle password visibility"
+                                            onClick={handleShowPassword}
+                                            onMouseDown={handleMouseDownPassword}
+                                            edge="end"
+                                        >
+                                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                }
+                                label="Password"
+                            />
+                        </FormControl>
+                        <Button
+                            type="submit"
+                            variant="outlined"
+                            color="black"
+                            fullWidth
+                            sx={{ mb: 2, textTransform: "none", fontWeight: "bold" }}
+                        >
                             Login
                         </Button>
-                        <span>or</span>
-                        <Link to="/auth/registration">
-                            <Button variant="outlined" endIcon={<AccountCircleIcon />}>
+                        <Typography variant="body2" textAlign="center">
+                            Don't have an account?{" "}
+                            <Link
+                                to="/auth/registration"
+                                style={{ textDecoration: "none", color: "#1976d2" }}
+                            >
                                 Register
-                            </Button>
-                        </Link>
+                            </Link>
+                        </Typography>
                     </Box>
-                </Box>
-            </div>
-        </>
+                </CardContent>
+            </Card>
+        </Grid>
     );
 }
 
