@@ -11,9 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chronicle.Application", "Sr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chronicle.PostgrePersistence", "Src\Chronicle.PostgrePersistence\Chronicle.PostgrePersistence.csproj", "{4B4DC6CD-1B29-4276-A518-FBEAEBDF205F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chronicle.Api", "Src\Chronicle.Api\Chronicle.Api.csproj", "{1AA14C26-5B83-4EBC-ABD7-2C01974C7CB4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chronicle.Api", "Src\Chronicle.Api\Chronicle.Api.csproj", "{1AA14C26-5B83-4EBC-ABD7-2C01974C7CB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chronicle.Infrastucture", "Src\Chronicle.Infrastucture\Chronicle.Infrastucture.csproj", "{EE5D6C7D-9B46-4FC1-9A6F-53BF0E906445}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chronicle.Infrastucture", "Src\Chronicle.Infrastucture\Chronicle.Infrastucture.csproj", "{EE5D6C7D-9B46-4FC1-9A6F-53BF0E906445}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "chronichle.react", "Src\Chronichle.React\chronichle.react.esproj", "{6767DAC5-4966-4E09-B318-80BCA1F0E6BD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,12 @@ Global
 		{EE5D6C7D-9B46-4FC1-9A6F-53BF0E906445}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE5D6C7D-9B46-4FC1-9A6F-53BF0E906445}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE5D6C7D-9B46-4FC1-9A6F-53BF0E906445}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6767DAC5-4966-4E09-B318-80BCA1F0E6BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6767DAC5-4966-4E09-B318-80BCA1F0E6BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6767DAC5-4966-4E09-B318-80BCA1F0E6BD}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{6767DAC5-4966-4E09-B318-80BCA1F0E6BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6767DAC5-4966-4E09-B318-80BCA1F0E6BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6767DAC5-4966-4E09-B318-80BCA1F0E6BD}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -51,6 +59,7 @@ Global
 		{4B4DC6CD-1B29-4276-A518-FBEAEBDF205F} = {0751DDDA-4F0D-47B2-BFE7-AD77D47AA7B4}
 		{1AA14C26-5B83-4EBC-ABD7-2C01974C7CB4} = {0751DDDA-4F0D-47B2-BFE7-AD77D47AA7B4}
 		{EE5D6C7D-9B46-4FC1-9A6F-53BF0E906445} = {0751DDDA-4F0D-47B2-BFE7-AD77D47AA7B4}
+		{6767DAC5-4966-4E09-B318-80BCA1F0E6BD} = {0751DDDA-4F0D-47B2-BFE7-AD77D47AA7B4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {97D4F8CF-1A31-4D04-90F0-9837A5EFAA51}
