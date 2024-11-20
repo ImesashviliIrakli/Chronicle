@@ -26,10 +26,10 @@ export const useAuth = (mutationKey, urlParam, authType = "login") => {
                         method: "post",
                         data: JSON.stringify(authData),
                     }),
-                onSuccess: (data) => {
+                onSuccess: (result) => {
                     if (authType === "login") {
-                        sessionStorage.setItem("userData", JSON.stringify(data.result));
-                        sessionStorage.setItem("token", JSON.stringify(data.result.token));
+                        sessionStorage.setItem("userData", JSON.stringify(result.data));
+                        sessionStorage.setItem("token", JSON.stringify(result.data.token));
                         sessionStorage.setItem("login", "true");
                     }
                     handleSnackbarOpen();
@@ -43,6 +43,7 @@ export const useAuth = (mutationKey, urlParam, authType = "login") => {
                     );
                 },
                 onError: (error) => {
+                    console.log(error);
                     if (authType === "login") {
                         sessionStorage.removeItem("userData");
                         sessionStorage.removeItem("token");
