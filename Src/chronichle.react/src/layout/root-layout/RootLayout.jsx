@@ -182,13 +182,26 @@ function RootLayout(props) {
                                 </Menu>
                             </Box>
                         ) : (
-                            <Button
-                                color="inherit"
-                                onClick={() => navigate("/auth")}
-                                sx={{ fontWeight: 600, fontSize: "1rem" }}
-                            >
-                                Login
-                            </Button>
+                            <Box>
+
+                                <Button
+                                    color="inherit"
+                                    onClick={() => navigate("/login")}
+                                    sx={{ fontWeight: 600, fontSize: "1rem" }}
+                                >
+                                    Login
+                                </Button>
+
+                                <Button
+                                    color="inherit"
+                                    onClick={() => navigate("/register")}
+                                    sx={{ fontWeight: 600, fontSize: "1rem" }}
+                                >
+                                    Register
+                                    </Button>
+
+                            </Box>
+                            
                         )}
                     </Toolbar>
                 </Container>

@@ -38,8 +38,8 @@ export const useAuth = (mutationKey, urlParam, authType = "login") => {
                         `${authType === "login" ? "Logged in" : "Registered"} Successfully!`
                     );
                     setTimeout(
-                        () => navigate(`${authType === "login" ? "/" : "/"}`),
-                        2000
+                        () => navigate(`${authType === "login" ? "/" : "/login"}`),
+                        1000
                     );
                 },
                 onError: (error) => {

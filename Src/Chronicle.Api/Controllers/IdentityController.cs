@@ -1,8 +1,11 @@
 ﻿using Chronicle.Application.Identity.Commands.Login;
 using Chronicle.Application.Identity.Commands.Register;
+using Chronicle.Application.Identity.Commands.UpdateProfile;
+using Chronicle.Application.Models.Identity;
 using MediatR;
-using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
@@ -26,6 +29,24 @@ public class IdentityController(IMediator mediator) : BaseController
     public async Task<IActionResult> Register(RegisterCommand registerCommand)
     {
         var data = await _mediator.Send(registerCommand);
+
+        return CreateResponse(data);
+    }
+
+    [HttpPut]
+    [Authorize]
+    public async Task<IActionResult> UpdateProfile([FromBody] UpdateProfileRequest request)
+    {
+        var command = new UpdateProfileCommand(
+            GetCurrentUserId(),
+            request.FirstName,
+            request.LastName,
+            request.Email,
+            request.UserName,
+            request.PhoneNumber
+        );
+
+        var data = await _mediator.Send(command);
 
         return CreateResponse(data);
     }
@@ -76,5 +97,5 @@ public class IdentityController(IMediator mediator) : BaseController
         });
     }
 
-    
+
 }
