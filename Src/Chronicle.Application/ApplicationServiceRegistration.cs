@@ -1,5 +1,5 @@
 ﻿using Chronicle.Application.Behaviors;
-using Chronicle.Application.Identity.Commands.Login;
+using Chronicle.Application.Features.Identity.Commands.Login;
 using Chronicle.Application.Options;
 using FluentValidation;
 using MediatR;

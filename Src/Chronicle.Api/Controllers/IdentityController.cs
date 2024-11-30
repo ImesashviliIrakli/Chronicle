@@ -1,17 +1,14 @@
-﻿using Chronicle.Application.Identity.Commands.Login;
-using Chronicle.Application.Identity.Commands.Register;
-using Chronicle.Application.Identity.Commands.UpdateProfile;
-using Chronicle.Application.Models.Identity;
-using MediatR;
-using Microsoft.AspNetCore.Authentication;
+﻿using MediatR;
 using Microsoft.AspNetCore.Authentication.Google;
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using Chronicle.Application.Features.Identity.Commands.Login;
+using Chronicle.Application.Features.Identity.Commands.Register;
 
 namespace Chronicle.Api.Controllers;
 
-[Route("api/[controller]/[action]")]
+[Route("Api/[controller]/[action]")]
 [ApiController]
 public class IdentityController(IMediator mediator) : BaseController
 {
@@ -33,69 +30,51 @@ public class IdentityController(IMediator mediator) : BaseController
         return CreateResponse(data);
     }
 
-    [HttpPut]
-    [Authorize]
-    public async Task<IActionResult> UpdateProfile([FromBody] UpdateProfileRequest request)
-    {
-        var command = new UpdateProfileCommand(
-            GetCurrentUserId(),
-            request.FirstName,
-            request.LastName,
-            request.Email,
-            request.UserName,
-            request.PhoneNumber
-        );
+    //[HttpGet]
+    //public IActionResult GetGoogleLoginUrl()
+    //{
+    //    var redirectUrl = Url.Action("GoogleCallback", "Identity");
+    //    var properties = new AuthenticationProperties
+    //    {
+    //        RedirectUri = redirectUrl
+    //    };
 
-        var data = await _mediator.Send(command);
+    //    var googleUrl = Url.Action("ExternalLogin", "Identity", new { provider = "Google", returnUrl = redirectUrl });
+    //    return Ok(new { Url = googleUrl });
+    //}
 
-        return CreateResponse(data);
-    }
+    //[HttpGet]
+    //public IActionResult ExternalLogin(string provider, string returnUrl)
+    //{
+    //    var properties = new AuthenticationProperties { RedirectUri = returnUrl };
+    //    return Challenge(properties, provider);
+    //}
 
-    [HttpGet]
-    public IActionResult GetGoogleLoginUrl()
-    {
-        var redirectUrl = Url.Action("GoogleCallback", "Identity");
-        var properties = new AuthenticationProperties
-        {
-            RedirectUri = redirectUrl
-        };
+    //[HttpGet]
+    //public async Task<IActionResult> GoogleLogin()
+    //{
+    //    // Authenticate the user using the scheme set up with Google.
+    //    var authenticateResult = await HttpContext.AuthenticateAsync(GoogleDefaults.AuthenticationScheme);
 
-        var googleUrl = Url.Action("ExternalLogin", "Identity", new { provider = "Google", returnUrl = redirectUrl });
-        return Ok(new { Url = googleUrl });
-    }
+    //    // If the authentication failed, return an error.
+    //    if (!authenticateResult.Succeeded || authenticateResult.Principal == null)
+    //        return Unauthorized("Google authentication failed.");
 
-    [HttpGet]
-    public IActionResult ExternalLogin(string provider, string returnUrl)
-    {
-        var properties = new AuthenticationProperties { RedirectUri = returnUrl };
-        return Challenge(properties, provider);
-    }
+    //    // Extract user information from Google claims.
+    //    var email = authenticateResult.Principal.FindFirst(ClaimTypes.Email)?.Value;
+    //    var name = authenticateResult.Principal.FindFirst(ClaimTypes.Name)?.Value;
 
-    [HttpGet]
-    public async Task<IActionResult> GoogleLogin()
-    {
-        // Authenticate the user using the scheme set up with Google.
-        var authenticateResult = await HttpContext.AuthenticateAsync(GoogleDefaults.AuthenticationScheme);
+    //    // Handle user information here, e.g., creating or logging in a user in your system.
+    //    // Example: Check if user exists; if not, create a new user; if exists, log them in.
 
-        // If the authentication failed, return an error.
-        if (!authenticateResult.Succeeded || authenticateResult.Principal == null)
-            return Unauthorized("Google authentication failed.");
+    //    // For simplicity, let's return the user's email and name as a sample response.
+    //    return Ok(new
+    //    {
+    //        Message = "Google authentication succeeded.",
+    //        Email = email,
+    //        Name = name
+    //    });
+    //}
 
-        // Extract user information from Google claims.
-        var email = authenticateResult.Principal.FindFirst(ClaimTypes.Email)?.Value;
-        var name = authenticateResult.Principal.FindFirst(ClaimTypes.Name)?.Value;
-
-        // Handle user information here, e.g., creating or logging in a user in your system.
-        // Example: Check if user exists; if not, create a new user; if exists, log them in.
-
-        // For simplicity, let's return the user's email and name as a sample response.
-        return Ok(new
-        {
-            Message = "Google authentication succeeded.",
-            Email = email,
-            Name = name
-        });
-    }
-
-
+    
 }

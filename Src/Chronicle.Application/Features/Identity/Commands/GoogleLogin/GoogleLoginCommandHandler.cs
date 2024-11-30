@@ -5,7 +5,7 @@ using Chronicle.Domain.Errors;
 using Chronicle.Domain.Shared;
 using Microsoft.AspNetCore.Identity;
 
-namespace Chronicle.Application.Identity.Commands.GoogleLogin;
+namespace Chronicle.Application.Features.Identity.Commands.GoogleLogin;
 
 public class GoogleLoginCommandHandler(
     UserManager<ApplicationUser> userManager,
@@ -37,7 +37,7 @@ public class GoogleLoginCommandHandler(
         // Here you can add any additional login logic, like issuing a JWT if applicable
         await _signInManager.SignInAsync(user, isPersistent: true);
 
-        var data = new { Email = user.Email, FirstName = user.FirstName, LastName = user.LastName };
+        var data = new { user.Email, user.FirstName, user.LastName };
         return Result.Success(data);
     }
 }

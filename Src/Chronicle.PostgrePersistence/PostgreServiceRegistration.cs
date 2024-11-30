@@ -16,12 +16,17 @@ public static class PostgreServiceRegistration
         services.AddDbContext<AuthDbContext>(options =>
            options.UseNpgsql(configuration.GetConnectionString("POSTGRES_CONNECTION_STRING")));
 
+        services.AddDbContext<AppDbContext>(options =>
+           options.UseNpgsql(configuration.GetConnectionString("POSTGRES_CONNECTION_STRING")));
+
         services.AddIdentityCore<ApplicationUser>()
             .AddSignInManager()
             .AddEntityFrameworkStores<AuthDbContext>()
             .AddDefaultTokenProviders();
 
         services.AddScoped<IAuthUnitOfWork, AuthUnitOfWork>();
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
         return services;
     }

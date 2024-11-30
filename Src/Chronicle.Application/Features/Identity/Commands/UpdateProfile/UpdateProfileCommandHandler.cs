@@ -6,7 +6,7 @@ using Chronicle.Domain.Repositories;
 using Chronicle.Domain.Shared;
 using Microsoft.AspNetCore.Identity;
 
-namespace Chronicle.Application.Identity.Commands.UpdateProfile;
+namespace Chronicle.Application.Features.Identity.Commands.UpdateProfile;
 
 public class UpdateProfileCommandHandler(
         UserManager<ApplicationUser> userManager,

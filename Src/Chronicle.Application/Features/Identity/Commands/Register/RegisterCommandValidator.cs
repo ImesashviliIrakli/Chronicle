@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Chronicle.Application.Identity.Commands.Register;
+namespace Chronicle.Application.Features.Identity.Commands.Register;
 
 public class RegisterCommandValidator : AbstractValidator<RegisterCommand>
 {

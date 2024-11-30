@@ -18,6 +18,8 @@ public abstract class BaseController : ControllerBase
                 return NotFound(result);
             case GlobalStatusCodes.BadRequest:
                 return BadRequest(result);
+            case GlobalStatusCodes.Forbidden:
+                return StatusCode(403, result);
             default:
                 return StatusCode(500, result);
 

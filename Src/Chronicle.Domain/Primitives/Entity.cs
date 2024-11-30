@@ -1,26 +1,31 @@
-﻿namespace Chronicle.Domain.Primitives;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Chronicle.Domain.Primitives;
 
 public abstract class Entity
 {
-    public Guid Id { get; protected set; }
+    [Key]
+    public int Id { get; protected set; }
 
-    private readonly List<DomainEvent> _domainEvents = new();
-    public IReadOnlyCollection<DomainEvent> DomainEvents => _domainEvents.AsReadOnly();
+    public Guid UserId { get; protected set; }
 
-    protected void AddDomainEvent(DomainEvent domainEvent)
-    {
-        _domainEvents.Add(domainEvent);
-    }
+    //private readonly List<DomainEvent> _domainEvents = new();
+    //public IReadOnlyCollection<DomainEvent> DomainEvents => _domainEvents.AsReadOnly();
 
-    public void RemoveDomainEvent(DomainEvent domainEvent)
-    {
-        _domainEvents.Remove(domainEvent);
-    }
+    //protected void AddDomainEvent(DomainEvent domainEvent)
+    //{
+    //    _domainEvents.Add(domainEvent);
+    //}
 
-    public void ClearDomainEvents()
-    {
-        _domainEvents.Clear();
-    }
+    //public void RemoveDomainEvent(DomainEvent domainEvent)
+    //{
+    //    _domainEvents.Remove(domainEvent);
+    //}
+
+    //public void ClearDomainEvents()
+    //{
+    //    _domainEvents.Clear();
+    //}
 
     // Equality checks based on identity
     //public override bool Equals(object obj) =>

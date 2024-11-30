@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using Chronicle.Application.Interfaces;
+using Chronicle.Infrastucture.Implementations;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,6 +26,8 @@ public static class InfrastructureServiceRegistration
             options.ClientId = googleClientId;
             options.ClientSecret = googleClientSecret;
         });
+
+        services.AddScoped<IUserContext, UserContext>();
 
         return services;
     }

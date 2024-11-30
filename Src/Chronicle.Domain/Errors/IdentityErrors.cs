@@ -18,4 +18,9 @@ public class IdentityErrors
         "NotFound",
         "The specified user: could not be found."
         );
+
+    public static readonly Error Forbidden = new(
+        "Forbidden",
+        "Need to be logged in."
+        );
 }

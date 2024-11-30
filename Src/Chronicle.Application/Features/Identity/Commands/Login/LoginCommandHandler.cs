@@ -12,7 +12,7 @@ using System.ComponentModel.DataAnnotations;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 
-namespace Chronicle.Application.Identity.Commands.Login;
+namespace Chronicle.Application.Features.Identity.Commands.Login;
 
 public class LoginCommandHandler(
         UserManager<ApplicationUser> userManager,

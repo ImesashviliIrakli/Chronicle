@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using System.Text;
 
-namespace Chronicle.Application.Identity.Commands.Register;
+namespace Chronicle.Application.Features.Identity.Commands.Register;
 
 public class RegisterCommandHandler(
         UserManager<ApplicationUser> userManager,

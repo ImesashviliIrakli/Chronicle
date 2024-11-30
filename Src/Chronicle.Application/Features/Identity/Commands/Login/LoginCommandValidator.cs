@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Chronicle.Application.Identity.Commands.Login;
+namespace Chronicle.Application.Features.Identity.Commands.Login;
 
 public class LoginCommandValidator : AbstractValidator<LoginCommand>
 {
