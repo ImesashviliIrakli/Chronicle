@@ -13,7 +13,7 @@ public class Result
         Data = data;
     }
 
-    public static Result Success() => new(GlobalStatusCodes.Success);
+    public static Result Success() => new(GlobalStatusCodes.Success, Array.Empty<object>());
 
     public static Result Success(object data) => new(GlobalStatusCodes.Success, data);
 

@@ -29,8 +29,9 @@ public class Todo : Entity
         DeadLine = deadLine;
     }
 
-    public void Complete()
+    public void ToggleComplete()
     {
-        IsCompleted = true;
+        IsCompleted = !IsCompleted;
     }
+
 }
