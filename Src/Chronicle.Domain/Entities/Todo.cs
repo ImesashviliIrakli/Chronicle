@@ -2,7 +2,7 @@
 
 namespace Chronicle.Domain.Entities;
 
-public class Todo : Entity
+public sealed class Todo : Entity
 {
     public string Title { get; private set; }
     public string? Description { get; private set; }

@@ -7,7 +7,7 @@ using Chronicle.Domain.Shared;
 
 namespace Chronicle.Application.Features.TodoList.Queries.GetUserTodos;
 
-public class GetUserTodosQueryHandler(
+internal sealed class GetUserTodosQueryHandler(
     IRepository<Todo> repository,
     IUserContext userContext,
     IUnitOfWork unitOfWork

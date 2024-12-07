@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Chronicle.Application.Features.Identity.Commands.GoogleLogin;
 
-public class GoogleLoginCommandHandler(
+internal sealed class GoogleLoginCommandHandler(
     UserManager<ApplicationUser> userManager,
     SignInManager<ApplicationUser> signInManager
     ) : ICommandQueryHandler<GoogleLoginCommand>

@@ -14,7 +14,7 @@ using System.Text;
 
 namespace Chronicle.Application.Features.Identity.Commands.Login;
 
-public class LoginCommandHandler(
+internal sealed class LoginCommandHandler(
         UserManager<ApplicationUser> userManager,
         SignInManager<ApplicationUser> signInManager,
         IOptions<JwtOptions> jwtOptions

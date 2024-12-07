@@ -7,7 +7,7 @@ using Chronicle.Domain.Shared;
 
 namespace Chronicle.Application.Features.TodoList.Commands.CreateTodo;
 
-public class CreateTodoCommandHandler(IRepository<Todo> repository, IUserContext userContext, IUnitOfWork unitOfWork) : ICommandQueryHandler<CreateTodoCommand>
+internal sealed class CreateTodoCommandHandler(IRepository<Todo> repository, IUserContext userContext, IUnitOfWork unitOfWork) : ICommandQueryHandler<CreateTodoCommand>
 {
     private readonly IRepository<Todo> _repository = repository;
     private readonly IUserContext _userContext = userContext;

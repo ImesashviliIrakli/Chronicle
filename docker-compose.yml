@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+  chronicle.api:
+    image: ${DOCKER_REGISTRY-}chronicleapi
+    container_name: chronicle.Api
+    build:
+      context: .
+      dockerfile: src/Chronicle.Api/Dockerfile
+
+  chronicle-seq:
+    image: datalust/seq:latest
+    container_name: chronicle.Seq
+    environment:
+      - ACCEPT_EULA=Y
+    ports:
+      - 5341:5341
+      - 8081:80
+
+  chronicle-redis:
+    image: redis:latest
+    container_name: chronicle.Redis
+    restart: always
+    ports:
+      - '6379:6379'

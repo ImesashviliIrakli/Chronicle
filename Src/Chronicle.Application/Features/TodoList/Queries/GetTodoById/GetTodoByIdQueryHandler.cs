@@ -7,7 +7,7 @@ using Chronicle.Domain.Shared;
 
 namespace Chronicle.Application.Features.TodoList.Queries.GetTodoById;
 
-public class GetTodoByIdQueryHandler(
+internal sealed class GetTodoByIdQueryHandler(
         IRepository<Todo> repository,
         IUserContext userContext
     ) : ICommandQueryHandler<GetTodoByIdQuery>

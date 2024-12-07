@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Chronicle.Application.Features.Identity.Commands.UpdateProfile;
 
-public class UpdateProfileCommandHandler(
+internal sealed class UpdateProfileCommandHandler(
         UserManager<ApplicationUser> userManager,
         IAuthUnitOfWork unitOfWork
     ) : ICommandQueryHandler<UpdateProfileCommand>

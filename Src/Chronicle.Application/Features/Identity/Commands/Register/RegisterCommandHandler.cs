@@ -10,7 +10,7 @@ using System.Text;
 
 namespace Chronicle.Application.Features.Identity.Commands.Register;
 
-public class RegisterCommandHandler(
+internal sealed class RegisterCommandHandler(
         UserManager<ApplicationUser> userManager,
         SignInManager<ApplicationUser> signInManager,
         IAuthUnitOfWork unitOfWork

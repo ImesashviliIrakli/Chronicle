@@ -9,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Chronicle.PostgrePersistence;
 
-public static class PostgreServiceRegistration
+public static class DependencyInjection
 {
     public static IServiceCollection AddPostgrePersistenceServices(this IServiceCollection services, IConfiguration configuration)
     {

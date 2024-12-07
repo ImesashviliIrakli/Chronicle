@@ -10,10 +10,6 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["Src/Chronicle.Api/Chronicle.Api.csproj", "Src/Chronicle.Api/"]
-COPY ["Src/Chronicle.Application/Chronicle.Application.csproj", "Src/Chronicle.Application/"]
-COPY ["Src/Chronicle.Domain/Chronicle.Domain.csproj", "Src/Chronicle.Domain/"]
-COPY ["Src/Chronicle.Infrastucture/Chronicle.Infrastucture.csproj", "Src/Chronicle.Infrastucture/"]
-COPY ["Src/Chronicle.PostgrePersistence/Chronicle.PostgrePersistence.csproj", "Src/Chronicle.PostgrePersistence/"]
 RUN dotnet restore "./Src/Chronicle.Api/Chronicle.Api.csproj"
 COPY . .
 WORKDIR "/src/Src/Chronicle.Api"

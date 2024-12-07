@@ -7,7 +7,7 @@ using Chronicle.Domain.Shared;
 
 namespace Chronicle.Application.Features.TodoList.Commands.CompleteTodo;
 
-public class ToggleCompleteTodoCommandHandler(
+internal sealed class ToggleCompleteTodoCommandHandler(
         IRepository<Todo> repository,
         IUserContext userContext,
         IUnitOfWork unitOfWork

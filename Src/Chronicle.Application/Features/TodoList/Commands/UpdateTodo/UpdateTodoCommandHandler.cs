@@ -7,7 +7,7 @@ using Chronicle.Domain.Shared;
 
 namespace Chronicle.Application.Features.TodoList.Commands.UpdateTodo;
 
-public class UpdateTodoCommandHandler(
+internal sealed class UpdateTodoCommandHandler(
         IRepository<Todo> repository,
         IUserContext userContext,
         IUnitOfWork unitOfWork

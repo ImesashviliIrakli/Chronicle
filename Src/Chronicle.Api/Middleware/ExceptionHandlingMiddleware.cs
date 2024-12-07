@@ -1,21 +1,22 @@
 ﻿using Chronicle.Domain.Enums;
 using Chronicle.Domain.Errors;
 using Chronicle.Domain.Shared;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
 using System.Net;
 using System.Text.Json;
 
-namespace Chronicle.Application.Middleware;
+namespace Chronicle.Api.Middleware;
 
-public class ExceptionMiddleware(ILogger<ExceptionMiddleware> logger) : IMiddleware
+public class ExceptionHandlingMiddleware(
+    RequestDelegate next, 
+    ILogger<ExceptionHandlingMiddleware> logger)
 {
-    private readonly ILogger<ExceptionMiddleware> _logger = logger;
-    public async Task InvokeAsync(HttpContext context, RequestDelegate next)
+    private readonly RequestDelegate _next = next;
+    private readonly ILogger<ExceptionHandlingMiddleware> _logger = logger;
+    public async Task InvokeAsync(HttpContext context)
     {
         try
         {
-            await next(context);
+            await _next(context);
         }
         catch (Exception ex)
         {

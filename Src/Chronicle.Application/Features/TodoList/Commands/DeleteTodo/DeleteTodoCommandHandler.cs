@@ -7,7 +7,7 @@ using Chronicle.Domain.Shared;
 
 namespace Chronicle.Application.Features.TodoList.Commands.DeleteTodo;
 
-public class DeleteTodoCommandHandler(
+internal sealed class DeleteTodoCommandHandler(
         IRepository<Todo> repository,
         IUserContext userContext,
         IUnitOfWork unitOfWork
