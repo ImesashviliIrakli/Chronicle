@@ -23,7 +23,7 @@ function Login() {
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
-    const { mutate } = useAuth(["login"], "/api/Identity/Login", "login");
+    const { mutate } = useAuth(["login"], "/api/identity/login", "login");
 
     const handleShowPassword = () => setShowPassword((show) => !show);
 

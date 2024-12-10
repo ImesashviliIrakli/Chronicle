@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Chronicle.Api.Controllers;
 
-[Route("Api/[controller]")]
+[Route("api/todos")]
 [ApiController]
 [Authorize]
 public class TodosController(IMediator mediator) : BaseController

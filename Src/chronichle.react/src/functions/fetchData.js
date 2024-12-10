@@ -5,7 +5,7 @@ export async function fetchData(config) {
         const response = await axios({
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+                Authorization: `Bearer ${JSON.parse(sessionStorage.getItem("token"))}`,
             },
             ...config,
         });
@@ -14,10 +14,6 @@ export async function fetchData(config) {
         return data;
     } catch (e) {
         console.error(e);
-        throw {
-            message: e.message || "An error occurred",
-            status: e.response?.status,
-            data: e.response?.data,
-        };
+        throw e;
     }
 }

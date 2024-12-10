@@ -8,13 +8,13 @@ using Chronicle.Application.Features.Identity.Commands.Register;
 
 namespace Chronicle.Api.Controllers;
 
-[Route("Api/[controller]/[action]")]
+[Route("api/identity")]
 [ApiController]
 public class IdentityController(IMediator mediator) : BaseController
 {
     private readonly IMediator _mediator = mediator;
 
-    [HttpPost]
+    [HttpPost("login")]
     public async Task<IActionResult> Login(LoginCommand loginCommand)
     {
         var data = await _mediator.Send(loginCommand);
@@ -22,7 +22,7 @@ public class IdentityController(IMediator mediator) : BaseController
         return CreateResponse(data);
     }
 
-    [HttpPost]
+    [HttpPost("register")]
     public async Task<IActionResult> Register(RegisterCommand registerCommand)
     {
         var data = await _mediator.Send(registerCommand);

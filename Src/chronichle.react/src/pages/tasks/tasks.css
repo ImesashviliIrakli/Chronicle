@@ -1,0 +1,110 @@
+/* General Layout */
+body {
+    background-color: #f4f7fc;
+    margin: 0;
+    padding: 0;
+}
+
+/* Todo List Styling */
+.todo-list {
+    width: 90%;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f3eceb;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.todo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    .todo-header h1 {
+        margin: 0;
+        font-size: 24px;
+    }
+
+.add-button {
+    padding: 8px 16px;
+    font-size: 16px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+    .add-button:hover {
+        background-color: #45a049;
+    }
+
+/* Task Item Styling */
+
+/* Modal Styling */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    width: 400px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+    .modal h2 {
+        margin-bottom: 20px;
+        font-size: 20px;
+    }
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cancel-button,
+.submit-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.cancel-button {
+    background-color: #f44336;
+    color: white;
+}
+
+    .cancel-button:hover {
+        background-color: #e53935;
+    }
+
+.submit-button {
+    background-color: #4caf50;
+    color: white;
+}
+
+    .submit-button:hover {
+        background-color: #45a049;
+    }
